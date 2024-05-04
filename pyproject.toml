@@ -1,0 +1,62 @@
+[tool.poetry]
+name = "python-model-registry"
+version = "1.1.0"
+description = "ML models registry service"
+authors = ["Artem <duketemon@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "*"
+uvicorn = {extras = ["standard"], version = "*"}
+pydantic = "*"
+pydantic-settings = "*"
+python-multipart = "*"
+python-dotenv = "*"
+scikit-learn = "*"
+pandas = "*"
+loguru = "*"
+pymongo = {extras = ["srv"], version = "*"}
+shap = "*"
+
+[tool.poetry.group.dev.dependencies]
+black = "*"
+mypy = "*"
+pylint = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-mock = "*"
+isort = "*"
+pre-commit = "*"
+httpx = "*"
+requests = "*"
+
+[tool.black]
+line-length = 99
+target-version = ["py312", "py311", "py310", "py39"]
+
+
+[tool.isort]
+profile = "black"
+
+[tool.pylint.messages_control]
+disable = [
+  "missing-module-docstring",
+]
+
+
+[tool.pytest.ini_options]
+testpaths = "src"
+addopts = [
+    "--strict-markers",
+    "--verbose",
+    "--cov=src",
+    "--cov-branch",
+    "--cov-report=term-missing:skip-covered",
+    "--cov-fail-under=80"
+]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
